@@ -1,10 +1,3 @@
-/*
-ChannelActions Bot
-Telegram: @ChannelActionsBot
-
-(c) Aditya, https://xditya.me
-*/
-
 import config from "./env.ts";
 import { get_perms } from "./helpers.ts";
 import {
@@ -103,7 +96,7 @@ bot
       reply_markup: new InlineKeyboard()
         .text(ctx.t("usage-help"), "helper").row()
         .text("Change Language", "setLang").row()
-        .url(ctx.t("updates"), "https://t.me/BotzHub"),
+        .url(ctx.t("updates"), "https://t.me/M2LINKS"),
       disable_web_page_preview: true,
     });
     await addUser(ctx.from.id);
@@ -115,14 +108,14 @@ bot.callbackQuery("cancelLocaleSetting", async (ctx) => {
     reply_markup: new InlineKeyboard()
       .text(ctx.t("usage-help"), "helper").row()
       .text("Change Language", "setLang").row()
-      .url(ctx.t("updates"), "https://t.me/BotzHub"),
+      .url(ctx.t("updates"), "https://t.me/M2LINKS"),
     disable_web_page_preview: true,
   });
 });
 bot.callbackQuery("helper", async (ctx) => {
   await ctx.editMessageText(
     ctx.t("help") +
-      "\n\nTo approve members who are already in waiting list, upgrade to premium! Contact @xditya_bot for information on pricing.",
+      "\n\nI Can approve Join Request Of Channel & Groups.",
     {
       reply_markup: new InlineKeyboard().text("Main Menu 📭", "cancelLocaleSetting"),
       parse_mode: "HTML",
@@ -347,7 +340,7 @@ bot
 <b>Total Users Seen (Approved/Disapproved)</b>: ${TOTAL_USERS_SEEN}
 <b>Uptime</b>: ${uptime}
 
-<b><a href="https://github.com/xditya/ChannelActionsBot">Repository</a> | <a href="https://t.me/BotzHub">Channel</a> | <a href="https://t.me/BotzHubChat">Support</a></b>`,
+<b><a href="t.me/m2links">M2LINKS</a> | <a href="https://t.me/M2linksCommunity">Support</a></b>`,
       { parse_mode: "HTML", disable_web_page_preview: true },
     );
   });
@@ -393,4 +386,4 @@ bot.callbackQuery(/setlang_(.*)/, async (ctx) => {
 
 await bot.init();
 console.info(`Started Bot - @${bot.botInfo.username}`);
-console.info("\nDo join @BotzHub!\nBy - @xditya.\n");
+console.info("\nGimme 1K INR To Star Lord!");
