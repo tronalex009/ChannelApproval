@@ -95,8 +95,7 @@ bot
       parse_mode: "HTML",
       reply_markup: new InlineKeyboard()
         .text(ctx.t("usage-help"), "helper").row()
-        .text("Change Language", "setLang").row()
-        .url(ctx.t("updates"), "https://t.me/M2LINKS"),
+        .text("Change Language", "setLang").row(),
       disable_web_page_preview: true,
     });
     await addUser(ctx.from.id);
@@ -107,8 +106,7 @@ bot.callbackQuery("cancelLocaleSetting", async (ctx) => {
     parse_mode: "HTML",
     reply_markup: new InlineKeyboard()
       .text(ctx.t("usage-help"), "helper").row()
-      .text("Change Language", "setLang").row()
-      .url(ctx.t("updates"), "https://t.me/M2LINKS"),
+      .text("Change Language", "setLang").row(),
     disable_web_page_preview: true,
   });
 });
@@ -308,42 +306,6 @@ bot.on("chat_join_request", async (ctx) => {
     return;
   }
 });
-
-bot
-  .filter((ctx) => owners.includes(ctx.from?.id ?? 0))
-  .chatType("private")
-  .command("stats", async (ctx) => {
-    const reply = await ctx.reply("Calculating...");
-    const diffTime = Math.abs(new Date().valueOf() - START_TIME);
-    let days = diffTime / (24 * 60 * 60 * 1000);
-    let hours = (days % 1) * 24;
-    let minutes = (hours % 1) * 60;
-    let secs = (minutes % 1) * 60;
-    [days, hours, minutes, secs] = [
-      Math.floor(days),
-      Math.floor(hours),
-      Math.floor(minutes),
-      Math.floor(secs),
-    ];
-    let uptime = "";
-    if (days > 0) uptime += `${days}d `;
-    if (hours > 0) uptime += `${hours}h `;
-    if (minutes > 0) uptime += `${minutes}m `;
-    if (secs > 0) uptime += `${secs}s.`;
-    await bot.api.editMessageText(
-      ctx.from.id,
-      reply.message_id,
-      `<b>Stats for @${bot.botInfo.username}</b>
-      
-<b>Total users</b>: ${await countUsers()}
-<b>Chats with modified settings</b>: ${(await getAllSettings()).length}
-<b>Total Users Seen (Approved/Disapproved)</b>: ${TOTAL_USERS_SEEN}
-<b>Uptime</b>: ${uptime}
-
-<b><a href="t.me/m2links">M2LINKS</a> | <a href="https://t.me/M2linksCommunity">Support</a></b>`,
-      { parse_mode: "HTML", disable_web_page_preview: true },
-    );
-  });
 
 function getAvaialableLocalesButtons(currentLocale: string) {
   const keyboard = new InlineKeyboard();
